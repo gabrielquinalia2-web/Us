@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Site Simples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 20px;
+    }
+    main {
+      padding: 20px;
+    }
+    img {
+      max-width: 300px;
+      margin: 10px auto;
+      display: block;
+    }
+    .contador {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bem-vindo ao meu site!</h1>
+  </header>
 
+  <main>
+    <p>Aqui você pode colocar seus textos e imagens.</p>
+    <img src="https://picsum.photos/400/250" alt="Imagem exemplo">
+
+    <h2>Contador regressivo até o Ano Novo 🎉</h2>
+    <div class="contador" id="contador"></div>
+  </main>
+
+  <script>
+    function atualizarContador() {
+      const destino = new Date("Jan 1, 2026 00:00:00").getTime();
+      const agora = new Date().getTime();
+      const diferenca = destino - agora;
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").innerHTML =
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+      if (diferenca < 0) {
+        document.getElementById("contador").innerHTML = "🎆 Feliz Ano Novo!";
+      }
+    }
+
+    setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
